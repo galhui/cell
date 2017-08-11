@@ -47,7 +47,10 @@ namespace CellExe.Cell
                     Size s = new Size(3, 3);
                     Position p = new Position(pictureBox.Width / 2, pictureBox.Height / 2);
 
-                    env.AddObjects(new ProtoCell(s, p));
+                    ProtoCell cell = new ProtoCell(s, p);
+                    cell.RandomPosition(pictureBox.Width, pictureBox.Height);
+
+                    env.AddObjects(cell);
                 }
 
                 timeThread.Start();

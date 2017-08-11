@@ -16,7 +16,7 @@ namespace CellExe.Cell.CellObjects
         public Position myPosition;
         public Vector myVector = new Vector();
 
-        const double TimeBalance = 500;
+        const double TimeBalance = 100;     // don't change this value. 
 
         virtual public void Movement()
         {

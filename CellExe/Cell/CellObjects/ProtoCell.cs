@@ -24,7 +24,7 @@ namespace CellExe.Cell.CellObjects
             rnd = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
 
             myVector.Direction = rnd.NextDouble() * 365.0;
-            myColor = Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
+            myColor = Color.Black;//Color.FromArgb(rnd.Next(0, 256), rnd.Next(0, 256), rnd.Next(0, 256));
         }
 
         public void RandomPosition(int width, int height)
@@ -60,8 +60,8 @@ namespace CellExe.Cell.CellObjects
 
         public override void Render(Graphics gp)
         {
-            gp.DrawRectangle(new Pen(myColor), new Rectangle(myPosition.x - (mySize.Width/2), myPosition.y - (mySize.Height/2), mySize.Width, mySize.Height));
-
+            //gp.DrawRectangle(new Pen(myColor), new Rectangle(myPosition.x - (mySize.Width/2), myPosition.y - (mySize.Height/2), mySize.Width, mySize.Height));
+            gp.FillRectangle(Brushes.Black, new Rectangle(myPosition.x - (mySize.Width / 2), myPosition.y - (mySize.Height / 2), mySize.Width, mySize.Height));
             base.Render(gp);
         }
     }

@@ -42,9 +42,9 @@ namespace CellExe.Cell
                 // 환경을 초기화
                 env = new Environment(new Size(pictureBox.Height, pictureBox.Width));
 
-                for (int i = 0; i < 500; i++)
+                for (int i = 0; i < 30; i++)
                 {
-                    Size s = new Size(3, 3);
+                    Size s = new Size(15, 15);
                     Position p = new Position(pictureBox.Width / 2, pictureBox.Height / 2);
 
                     ProtoCell cell = new ProtoCell(s, p);

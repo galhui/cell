@@ -40,13 +40,13 @@
             // 
             this.pictureBox.Location = new System.Drawing.Point(12, 29);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(588, 498);
+            this.pictureBox.Size = new System.Drawing.Size(873, 586);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
             // btn_start
             // 
-            this.btn_start.Location = new System.Drawing.Point(606, 12);
+            this.btn_start.Location = new System.Drawing.Point(891, 12);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(88, 41);
             this.btn_start.TabIndex = 1;
@@ -56,7 +56,7 @@
             // 
             // btn_stop
             // 
-            this.btn_stop.Location = new System.Drawing.Point(606, 59);
+            this.btn_stop.Location = new System.Drawing.Point(891, 59);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(88, 41);
             this.btn_stop.TabIndex = 2;
@@ -66,7 +66,7 @@
             // 
             // btn_reset
             // 
-            this.btn_reset.Location = new System.Drawing.Point(606, 486);
+            this.btn_reset.Location = new System.Drawing.Point(891, 574);
             this.btn_reset.Name = "btn_reset";
             this.btn_reset.Size = new System.Drawing.Size(88, 41);
             this.btn_reset.TabIndex = 3;
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(706, 539);
+            this.ClientSize = new System.Drawing.Size(991, 627);
             this.Controls.Add(this.lab_datetime);
             this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.btn_stop);

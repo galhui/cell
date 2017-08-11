@@ -62,6 +62,11 @@ namespace CellExe.Cell
             }
         }
 
+        public void Resize(Element.Size size)
+        {
+            env.Resize(size);
+        }
+
         public void Stop()
         {
             if ( timeThread.IsAlive)

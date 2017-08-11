@@ -46,8 +46,8 @@ namespace CellExe.Cell.CellObjects
 
             
 
-            myVector.Speed += rnd.NextDouble() * rnd.Next(-10, 10);
-            if (myVector.Speed > 100) myVector.Speed = 100;
+            myVector.Speed += rnd.NextDouble() * rnd.Next(-10, 40);
+            if (myVector.Speed > 1000) myVector.Speed = 1000;
             if (myVector.Speed < 0) myVector.Speed = 0;
 
             //Console.Write("speed {0}\n", myVector.Speed);

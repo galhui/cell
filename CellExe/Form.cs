@@ -42,5 +42,13 @@ namespace CellExe
             Application.ExitThread();
             Environment.Exit(0);
         }
+
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            pictureBox.Width = this.Width - 140;
+            pictureBox.Height = this.Height - 85;
+
+            main.Resize(new Element.Size(pictureBox.Height, pictureBox.Width));
+        }
     }
 }

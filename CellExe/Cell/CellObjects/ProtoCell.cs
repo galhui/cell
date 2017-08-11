@@ -19,33 +19,42 @@ namespace CellExe.Cell.CellObjects
         {
             mySize = size;
             myPosition = posi;
-            Thread.Sleep(20);
+            Thread.Sleep(10);
             rnd = new Random((int)DateTime.Now.Ticks & 0x0000FFFF);
+
+            myVector.Direction = rnd.NextDouble() * 365.0;
+
         }
 
         public override void Movement()
         {
             // 방향과 속도를 랜덤으로 정함.
-            myVector.Direction += (rnd.NextDouble() * rnd.Next(-1, 1) * 10) % 360;
+            myVector.Direction += (rnd.NextDouble() * rnd.Next(-1, 1) * 90) % 360;
+
+            if (rnd.Next(1, 100) > 50)
+                myVector.Direction += 180.0;
+
             myVector.Direction %= 360.0;
 
-            myVector.Speed += rnd.NextDouble() * rnd.Next(-1, 1) * rnd.Next(1, 5);
-            if (myVector.Speed > 50) myVector.Speed = 50;
-            if (myVector.Speed < 0) myVector.Speed = 0;
             
+
+            myVector.Speed += rnd.NextDouble() * rnd.Next(-10, 10);
+            if (myVector.Speed > 100) myVector.Speed = 100;
+            if (myVector.Speed < 0) myVector.Speed = 0;
+
+            //Console.Write("speed {0}\n", myVector.Speed);
+
             // 백터만큼 이동
             MoveToVector();
 
             base.Movement();
         }
 
-        public override void Render(PictureBox pb)
+        public override void Render(Graphics gp)
         {
-            Graphics g = pb.CreateGraphics();
+            gp.DrawRectangle(new Pen(Color.Black), new Rectangle(myPosition.x - (mySize.Width/2), myPosition.y - (mySize.Height/2), mySize.Width, mySize.Height));
 
-            g.DrawRectangle(new Pen(Color.Black), new Rectangle(myPosition.x, myPosition.y, 1, 1));
-
-            base.Render(pb);
+            base.Render(gp);
         }
     }
 }

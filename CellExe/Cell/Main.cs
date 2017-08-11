@@ -42,18 +42,20 @@ namespace CellExe.Cell
                 // 환경을 초기화
                 env = new Environment(new Size(pictureBox.Height, pictureBox.Width));
 
-                // 기본 Cell 생성 중간에 한마리 나둬보자..
-                env.AddObjects(new ProtoCell(new Size(1, 1), new Position(pictureBox.Height/2, pictureBox.Width/2)));
-                env.AddObjects(new ProtoCell(new Size(1, 1), new Position(0, 0)));
-                env.AddObjects(new ProtoCell(new Size(1, 1), new Position(100, 20)));
-                env.AddObjects(new ProtoCell(new Size(1, 1), new Position(100, 200)));
-                env.AddObjects(new ProtoCell(new Size(1, 1), new Position(150, 240)));
+                for (int i = 0; i < 500; i++)
+                {
+                    Size s = new Size(3, 3);
+                    Position p = new Position(pictureBox.Width / 2, pictureBox.Height / 2);
+
+                    env.AddObjects(new ProtoCell(s, p));
+                }
 
                 timeThread.Start();
             }
             else
             {
-                timeThread.Resume();
+                if(timeThread.IsAlive)
+                    timeThread.Resume();
             }
         }
 
@@ -84,11 +86,17 @@ namespace CellExe.Cell
         private void Render()
         {
             while(isAlive) {
-                time = time.AddMilliseconds(1);
-                SetTime(time.ToString("yyyy-MM-dd hh:mm:ss.fff"));
+                try { 
+                    time = time.AddMilliseconds(1);
+                    SetTime(time.ToString("yyyy-MM-dd hh:mm:ss.fff"));
 
-                env.SendTime(pictureBox);
-                Thread.Sleep(1);
+                    env.SendTime(pictureBox);
+                    Thread.Sleep(0);
+                }
+                catch(Exception exp)
+                {
+                    Console.Write(exp.Message);
+                }
             }
         }
 

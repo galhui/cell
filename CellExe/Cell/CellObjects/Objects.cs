@@ -6,36 +6,37 @@ using System.Threading.Tasks;
 
 using CellExe.Element;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace CellExe.Cell.CellObjects
 {
     public class Objects
     {
-        public Size mySize;
+        public Element.Size mySize;
         public Position myPosition;
         public Vector myVector = new Vector();
 
-        const double TimeBalance = 1000;
+        const double TimeBalance = 100;
 
         virtual public void Movement()
         {
 
         }
 
-        virtual public void Render(PictureBox pb)
+        virtual public void Render(Graphics gp)
         {
 
         }
 
         protected void MoveToVector()
         {
-            myPosition.dx += (Math.Sin(myVector.Direction / 180.0 * Math.PI) * myVector.Direction / TimeBalance);
-            myPosition.dy += (Math.Cos(myVector.Direction / 180.0 * Math.PI) * myVector.Direction / TimeBalance);
+            myPosition.dx += (Math.Sin(myVector.Direction / 180.0 * Math.PI) * myVector.Speed / TimeBalance);
+            myPosition.dy += (Math.Cos(myVector.Direction / 180.0 * Math.PI) * myVector.Speed / TimeBalance);
 
             myPosition.DoubleToInt();
         }
 
-        public void LocationCorrection(Size wordSize)
+        public void LocationCorrection(Element.Size wordSize)
         {
             // PictureBox에 그리기 때문에 세상 밖으로 나가는 보정은 쉽다.
 

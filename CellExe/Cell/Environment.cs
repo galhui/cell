@@ -14,6 +14,7 @@ namespace CellExe.Cell
     public class Environment
     {
         Element.Size wordSize;
+        Element.Size resize;
 
         List<Objects> objects = new List<Objects>();
 
@@ -23,7 +24,7 @@ namespace CellExe.Cell
 
         public Environment(Element.Size ws)
         {
-            wordSize = ws;
+            resize = wordSize = ws;
             buffer = new Bitmap(ws.Width, ws.Height);
         }
         
@@ -34,6 +35,13 @@ namespace CellExe.Cell
             {
                 try
                 {
+                    if ( wordSize != resize)
+                    {
+                        // wordSize 변경에 의한 bitmap 재생성
+                        buffer = new Bitmap(resize.Width, resize.Height);
+                        wordSize = resize;
+                    }
+
                     Graphics gp = Graphics.FromImage(buffer);
 
                     Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
@@ -91,5 +99,9 @@ namespace CellExe.Cell
             objects.Add(obj);
         }
 
+        public void Resize(Element.Size size)
+        {
+            resize = size;
+        }
     }
 }

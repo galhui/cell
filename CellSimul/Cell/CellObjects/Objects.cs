@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CellExe.Element;
+using CellSimul;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace CellExe.Cell.CellObjects
+namespace CellSimul.CellObjects
 {
     public class Objects
     {
-        public Element.Size mySize;
+        public Extent mySize;
         public Position myPosition;
         public Vector myVector = new Vector();
 
@@ -36,7 +36,7 @@ namespace CellExe.Cell.CellObjects
             myPosition.DoubleToInt();
         }
 
-        public void LocationCorrection(Element.Size wordSize)
+        public void LocationCorrection(Extent wordSize)
         {
             // PictureBox에 그리기 때문에 세상 밖으로 나가는 보정은 쉽다.
 

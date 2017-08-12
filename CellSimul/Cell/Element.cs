@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CellExe.Element
+namespace CellSimul
 {
     public class Position
     {
@@ -39,9 +39,9 @@ namespace CellExe.Element
         }
     }
 
-    public class Size
+    public class Extent
     {
-        public Size(int height, int width)
+        public Extent(int height, int width)
         {
             Height = height;
             Width = width;
@@ -56,7 +56,7 @@ namespace CellExe.Element
             if (obj == null)
                 return false;
 
-            Size p = obj as Size;
+            Extent p = obj as Extent;
             if ((System.Object)p == null)
                 return false;
 

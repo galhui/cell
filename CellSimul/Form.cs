@@ -8,21 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CellExe
+namespace CellSimul
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        Cell.Main main;
+        Main main;
 
         public Form()
         {
             InitializeComponent();
 
-            main = new Cell.Main(pictureBox, lab_datetime);
+            for(int i = 0; i <= 100; i+=10)
+            {
+                if (i == 0) continue;
+                cmb_protoCell.Items.Add(i);
+            }
+            cmb_protoCell.SelectedIndex = 9;
+
+
+            main = new Main(pictureBox, lab_datetime);
         }
 
         private void btn_start_Click(object sender, EventArgs e)
         {
+            main.protoCellMax = Convert.ToInt32(cmb_protoCell.Text);
             main.Start();
         }
 
@@ -40,15 +49,15 @@ namespace CellExe
         {
             main.Reset();
             Application.ExitThread();
-            Environment.Exit(0);
+            System.Environment.Exit(0);
         }
 
         private void Form_Resize(object sender, EventArgs e)
-        {
+        {   
             pictureBox.Width = this.Width - 140;
             pictureBox.Height = this.Height - 85;
 
-            main.Resize(new Element.Size(pictureBox.Height, pictureBox.Width));
+            main.Resize(new Extent(pictureBox.Height, pictureBox.Width));
         }
     }
 }

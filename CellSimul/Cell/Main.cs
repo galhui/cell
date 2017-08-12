@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 
-using CellExe.Element;
-using CellExe.Cell.CellObjects;
+using CellSimul;
+using CellSimul.CellObjects;
 
-namespace CellExe.Cell
+namespace CellSimul
 {
     public class Main
     {
@@ -25,10 +25,14 @@ namespace CellExe.Cell
 
         bool isAlive = false;
 
+        public int protoCellMax { get; set; }
+
         public Main(PictureBox pb, Label lab)
         {
             pictureBox = pb;
             timeLabel = lab;
+
+            protoCellMax = 10; // 없을 경우엔.. 기본값 넣어주기.
         }
 
         public void Start()
@@ -40,11 +44,11 @@ namespace CellExe.Cell
                 time = new DateTime(0);
                 
                 // 환경을 초기화
-                env = new Environment(new Size(pictureBox.Height, pictureBox.Width));
+                env = new Environment(new Extent(pictureBox.Height, pictureBox.Width));
 
-                for (int i = 0; i < 500; i++)
+                for (int i = 0; i < protoCellMax; i++)
                 {
-                    Size s = new Size(3, 3);
+                    Extent s = new Extent(3, 3);
                     Position p = new Position(pictureBox.Width / 2, pictureBox.Height / 2);
 
                     ProtoCell cell = new ProtoCell(s, p);
@@ -62,7 +66,7 @@ namespace CellExe.Cell
             }
         }
 
-        public void Resize(Element.Size size)
+        public void Resize(Extent size)
         {
             if (env != null)
                 env.Resize(size);
@@ -88,7 +92,7 @@ namespace CellExe.Cell
             timeThread = null;
             env = null;
             isAlive = false;
-
+            
             pictureBox.Invalidate();
         }
 

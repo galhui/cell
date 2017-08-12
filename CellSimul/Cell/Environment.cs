@@ -5,16 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Windows.Forms;
-using CellExe.Element;
-using CellExe.Cell.CellObjects;
+using CellSimul;
+using CellSimul.CellObjects;
 using System.Drawing;
 
-namespace CellExe.Cell
+namespace CellSimul
 {
     public class Environment
     {
-        Element.Size wordSize;
-        Element.Size resize;
+        Extent wordSize;
+        Extent resize;
 
         List<Objects> objects = new List<Objects>();
 
@@ -22,12 +22,20 @@ namespace CellExe.Cell
 
         DateTime preInvalideTime = DateTime.MinValue;
 
-        public Environment(Element.Size ws)
+        PictureBox mPb;
+
+        public Environment(Extent ws)
         {
             resize = wordSize = ws;
             buffer = new Bitmap(ws.Width, ws.Height);
+            copyInvoke = new ImageCopyInvoke(ImageCopy);
         }
-        
+
+        ~Environment()
+        {
+            buffer.Dispose();
+            objects.Clear();
+        }
 
         public void SendTime(PictureBox pb)
         {
@@ -64,7 +72,9 @@ namespace CellExe.Cell
                         ob.Render(gp);
                     }
 
-                    pb.Image = buffer;
+                    mPb = pb;
+                    pb.Invoke(copyInvoke);
+                    //ImageCopy(pb);
 
                     if ((DateTime.Now - preInvalideTime).Milliseconds > 33) // 30fps
                         Invalidate(pb);
@@ -74,6 +84,21 @@ namespace CellExe.Cell
                     Console.Write(exp.Message);
                 }
 
+            }
+        }
+        
+        public delegate void ImageCopyInvoke();
+        public ImageCopyInvoke copyInvoke;
+        public void ImageCopy()
+        {
+            try
+            {
+                if(buffer != null)
+                    mPb.Image = buffer;
+            }
+            catch (Exception exp)
+            {
+                Console.Write(exp.Message);
             }
         }
 
@@ -98,8 +123,8 @@ namespace CellExe.Cell
         {
             objects.Add(obj);
         }
-
-        public void Resize(Element.Size size)
+        
+        public void Resize(Extent size)
         {
             resize = size;
         }

@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CellExe.Element;
+using CellSimul;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 
-namespace CellExe.Cell.CellObjects
+namespace CellSimul.CellObjects
 {
     public class ProtoCell : Objects
     {
         Random rnd;
         Color myColor;
 
-        public ProtoCell (Element.Size size, Position posi)
+        public ProtoCell (Extent size, Position posi)
         {
             mySize = size;
             myPosition = posi;

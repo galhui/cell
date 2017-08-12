@@ -1,4 +1,4 @@
-﻿namespace CellExe
+﻿namespace CellSimul
 {
     partial class Form
     {
@@ -33,6 +33,8 @@
             this.btn_stop = new System.Windows.Forms.Button();
             this.btn_reset = new System.Windows.Forms.Button();
             this.lab_datetime = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmb_protoCell = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,11 +88,32 @@
             this.lab_datetime.Size = new System.Drawing.Size(0, 12);
             this.lab_datetime.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(900, 119);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "proto Cell";
+            // 
+            // cmb_protoCell
+            // 
+            this.cmb_protoCell.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmb_protoCell.FormattingEnabled = true;
+            this.cmb_protoCell.Location = new System.Drawing.Point(897, 135);
+            this.cmb_protoCell.Name = "cmb_protoCell";
+            this.cmb_protoCell.Size = new System.Drawing.Size(88, 20);
+            this.cmb_protoCell.TabIndex = 6;
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 624);
+            this.Controls.Add(this.cmb_protoCell);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lab_datetime);
             this.Controls.Add(this.btn_reset);
             this.Controls.Add(this.btn_stop);
@@ -115,6 +138,8 @@
         private System.Windows.Forms.Button btn_stop;
         private System.Windows.Forms.Button btn_reset;
         private System.Windows.Forms.Label lab_datetime;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cmb_protoCell;
     }
 }
 

@@ -41,7 +41,7 @@
             // pictureBox
             // 
             this.pictureBox.Location = new System.Drawing.Point(12, 29);
-            this.pictureBox.MinimumSize = new System.Drawing.Size(873, 586);
+            this.pictureBox.MinimumSize = new System.Drawing.Size(30, 30);
             this.pictureBox.Name = "pictureBox";
             this.pictureBox.Size = new System.Drawing.Size(873, 586);
             this.pictureBox.TabIndex = 0;
@@ -120,9 +120,9 @@
             this.Controls.Add(this.btn_start);
             this.Controls.Add(this.pictureBox);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(430, 335);
+            this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "Form";
-            this.Text = "Form1";
+            this.Text = "Cell Simulater";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form_FormClosed);
             this.Resize += new System.EventHandler(this.Form_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

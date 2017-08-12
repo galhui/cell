@@ -46,11 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell\Element.cs" />
-    <Compile Include="Cell\Environment.cs" />
-    <Compile Include="Cell\Main.cs" />
-    <Compile Include="Cell\CellObjects\ProtoCell.cs" />
-    <Compile Include="Cell\CellObjects\Objects.cs" />
+    <Compile Include="CellSimul\CellObjects\MortalCell.cs" />
+    <Compile Include="CellSimul\Element.cs" />
+    <Compile Include="CellSimul\Environment.cs" />
+    <Compile Include="CellSimul\Main.cs" />
+    <Compile Include="CellSimul\CellObjects\ProtoCell.cs" />
+    <Compile Include="CellSimul\CellObjects\Objects.cs" />
+    <Compile Include="CellSimul\Map.cs" />
     <Compile Include="Form.cs">
       <SubType>Form</SubType>
     </Compile>

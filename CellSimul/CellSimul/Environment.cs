@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Windows.Forms;
-using CellSimul;
-using CellSimul.CellObjects;
 using System.Drawing;
+
+using CellSimul.CellObjects;
+
 
 namespace CellSimul
 {
@@ -16,13 +13,15 @@ namespace CellSimul
         Extent wordSize;
         Extent resize;
 
-        List<Objects> objects = new List<Objects>();
+        List<WorldObjects> objects = new List<WorldObjects>();
 
         Bitmap buffer;
 
         DateTime preInvalideTime = DateTime.MinValue;
 
         PictureBox mPb;
+
+        Map map = new Map();
 
         public Environment(Extent ws)
         {
@@ -52,29 +51,28 @@ namespace CellSimul
 
                     Graphics gp = Graphics.FromImage(buffer);
 
-                    Rectangle rect = new Rectangle(0, 0, pb.Width - 1, pb.Height - 1);
+                    Rectangle rect = new Rectangle(0, 0, wordSize.Width - 1, wordSize.Height - 1);
 
                     // 팔렛트 셋팅...
                     gp.FillRectangle(Brushes.White, rect);
                     gp.DrawRectangle(new Pen(Color.Black), rect);
 
-                    // movement
-                    foreach (Objects ob in objects)
-                    {
-                        ob.Movement();
+                    map.InitMap(objects);
 
-                        ob.LocationCorrection(wordSize); // 세계값을 받아서 위치 보정.
+                    // movement
+                    foreach (WorldObjects ob in objects)
+                    {
+                        ob.Movement(wordSize, map.CloseObjects(ob.myPosition));
                     }
 
                     // render
-                    foreach (Objects ob in objects)
+                    foreach (WorldObjects ob in objects)
                     {
                         ob.Render(gp);
                     }
 
                     mPb = pb;
                     pb.Invoke(copyInvoke);
-                    //ImageCopy(pb);
 
                     if ((DateTime.Now - preInvalideTime).Milliseconds > 33) // 30fps
                         Invalidate(pb);
@@ -119,7 +117,7 @@ namespace CellSimul
 
         }
 
-        public void AddObjects(Objects obj)
+        public void AddObjects(WorldObjects obj)
         {
             objects.Add(obj);
         }

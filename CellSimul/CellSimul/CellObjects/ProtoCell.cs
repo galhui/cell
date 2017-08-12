@@ -1,20 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using CellSimul;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Threading;
 
 namespace CellSimul.CellObjects
 {
-    public class ProtoCell : Objects
+    public class ProtoCell : WorldObjects
     {
-        Random rnd;
-        Color myColor;
+        Random rnd;        
 
         public ProtoCell (Extent size, Position posi)
         {
@@ -34,9 +27,8 @@ namespace CellSimul.CellObjects
             myPosition.DoubleToInt();
         }
 
-        public override void Movement()
+        private void RandomVector()
         {
-            // 방향과 속도를 랜덤으로 정함.
             myVector.Direction += (rnd.NextDouble() * rnd.Next(-1, 1) * 90) % 360;
 
             if (rnd.Next(1, 100) > 50)
@@ -44,23 +36,39 @@ namespace CellSimul.CellObjects
 
             myVector.Direction %= 360.0;
 
-            
-
             myVector.Speed += rnd.NextDouble() * rnd.Next(-10, 10);
             if (myVector.Speed > 100) myVector.Speed = 100;
             if (myVector.Speed < 0) myVector.Speed = 0;
+        }
 
-            //Console.Write("speed {0}\n", myVector.Speed);
+        public override void Movement(Extent worldSize, List<WorldObjects> closeObject)
+        {
+            // 방향과 속도를 랜덤으로 정함.
+            RandomVector();
+
+            int cnt = 0;
+
+            while (AvailableDestination(closeObject))
+            {
+                myVector.Direction = (myVector.Direction + (45.0 * rnd.Next(-1, 1))) % 360.0;
+                myVector.Speed = 100;
+                cnt++;
+            }
+
+            if (cnt == 0 && myVector.Speed == 100)
+                myVector.Speed = 20;
 
             // 백터만큼 이동
             MoveToVector();
 
-            base.Movement();
+            base.Movement(worldSize, closeObject);
         }
 
         public override void Render(Graphics gp)
         {
-            gp.DrawRectangle(new Pen(myColor), new Rectangle(myPosition.x - (mySize.Width/2), myPosition.y - (mySize.Height/2), mySize.Width, mySize.Height));
+
+            gp.DrawEllipse(new Pen(myColor), new RectangleF(myPosition.x - (mySize.Width / 2), myPosition.y - (mySize.Height / 2), mySize.Width, mySize.Height));
+            //gp.DrawRectangle(new Pen(myColor), new Rectangle(myPosition.x - (mySize.Width/2), myPosition.y - (mySize.Height/2), mySize.Width, mySize.Height));
             //gp.FillRectangle(Brushes.Black, new Rectangle(myPosition.x - (mySize.Width / 2), myPosition.y - (mySize.Height / 2), mySize.Width, mySize.Height));
 
             base.Render(gp);
